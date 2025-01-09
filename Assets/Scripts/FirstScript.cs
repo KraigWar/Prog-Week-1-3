@@ -19,5 +19,11 @@ public class NewBehaviourScript : MonoBehaviour
         Vector2 pos = transform.position;
         pos.x += speed;
         transform.position = pos;
+
+        Vector2 squareInScreenSpace = Camera.main.WorldToScreenPoint(pos);
+
+        if (squareInScreenSpace.x < 0 || squareInScreenSpace.x > Screen.width)
+        { speed = speed *-1;
+        }
     }
 }
