@@ -21,21 +21,23 @@ public class NewBehaviourScript : MonoBehaviour
 
         pos.x += speed * Time.deltaTime;
 
-        transform.position = pos;
+        
 
-        Vector2 squareInScreenSpace = Camera.main.WorldToScreenPoint(pos);
+        Vector2 screenPos = Camera.main.WorldToScreenPoint(pos);
 
-        if (squareInScreenSpace.x > Screen.width)
+        if (screenPos.x > Screen.width)
         {
             Vector3 fixedPos = new Vector3(Screen.width, 0, 0);
             pos.x = Camera.main.ScreenToWorldPoint(fixedPos).x;
             speed = speed *-1;
         }
-        if (squareInScreenSpace.x < 0)
+        if (screenPos.x < 0)
         {
             Vector3 fixedPos = new Vector3(0, 0, 0);
             pos.x = Camera.main.ScreenToWorldPoint(fixedPos).x;
             speed = speed * -1;
         }
+
+        transform.position = pos;
     }
 }
